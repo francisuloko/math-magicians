@@ -22,6 +22,7 @@ class Button extends React.Component {
 }
 
 Button.defaultProps = {
+  buttonName: '',
   buttonClass: 'button grid-item',
 };
 
