@@ -21,6 +21,10 @@
   font-size: 14px;
 }
 
+.grid-item:hover {
+  border: 1px solid #eee;
+}
+
 .display {
   text-align: right;
   padding: 20px 35px;
