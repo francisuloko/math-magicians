@@ -1,65 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from './Button';
 import '../styles/calcStyles.css';
 import calculate from '../logic/calculate';
 
-class Calculator extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      result: {},
-    };
-    this.handleClick = this.handleClick.bind(this);
+const Calculator = () => {
+  let output = 0;
+  const [calculateObj, setCalculateObj] = useState({});
+
+  const handleClick = (obj, buttonName) => {
+    setCalculateObj(calculate(obj, buttonName));
+  };
+
+  if (Object.keys(calculateObj).length === 0 || (calculateObj.total === null
+    && calculateObj.next === null
+    && calculateObj.operation === null)) {
+    output = 0;
+  } else {
+    output = calculateObj.next !== null ? calculateObj.next : calculateObj.total;
   }
 
-  handleClick(obj, buttonName) {
-    this.setState({ result: calculate(obj, buttonName) });
-  }
-
-  render() {
-    const { result } = this.state;
-    let output = 0;
-    if (Object.keys(result).length === 0 || (result.total === null
-      && result.next === null
-      && result.operation === null)) {
-      output = 0;
-    } else {
-      output = result.next !== null ? result.next : result.total;
-    }
-
-    return (
-      <div className="container">
-        <div className="display">
-          { output }
-        </div>
-        <div className="calculator grid-container">
-          <Button buttonName="AC" onClick={this.handleClick} calcObject={result} />
-          <Button buttonName="+/-" onClick={this.handleClick} calcObject={result} />
-          <Button buttonName="&#37;" onClick={this.handleClick} calcObject={result} />
-          <Button buttonName="&divide;" buttonClass="orange" onClick={this.handleClick} calcObject={result} />
-
-          <Button buttonName="7" onClick={this.handleClick} calcObject={result} />
-          <Button buttonName="8" onClick={this.handleClick} calcObject={result} />
-          <Button buttonName="9" onClick={this.handleClick} calcObject={result} />
-          <Button buttonName="x" buttonClass="orange" onClick={this.handleClick} calcObject={result} />
-
-          <Button buttonName="4" onClick={this.handleClick} calcObject={result} />
-          <Button buttonName="5" onClick={this.handleClick} calcObject={result} />
-          <Button buttonName="6" onClick={this.handleClick} calcObject={result} />
-          <Button buttonName="-" buttonClass="orange" onClick={this.handleClick} calcObject={result} />
-
-          <Button buttonName="1" onClick={this.handleClick} calcObject={result} />
-          <Button buttonName="2" onClick={this.handleClick} calcObject={result} />
-          <Button buttonName="3" onClick={this.handleClick} calcObject={result} />
-          <Button buttonName="+" buttonClass="orange" onClick={this.handleClick} calcObject={result} />
-
-          <Button buttonName="0" buttonClass="zero" onClick={this.handleClick} calcObject={result} />
-          <Button buttonName="." onClick={this.handleClick} calcObject={result} />
-          <Button buttonName="=" buttonClass="orange" onClick={this.handleClick} calcObject={result} />
-        </div>
+  return (
+    <div className="container">
+      <div className="display">
+        {output}
       </div>
-    );
-  }
-}
+      <div className="calculator grid-container">
+        <Button buttonName="AC" onClick={handleClick} calcObject={calculateObj} />
+        <Button buttonName="+/-" onClick={handleClick} calcObject={calculateObj} />
+        <Button buttonName="&#37;" onClick={handleClick} calcObject={calculateObj} />
+        <Button buttonName="&divide;" buttonClass="orange" onClick={handleClick} calcObject={calculateObj} />
+
+        <Button buttonName="7" onClick={handleClick} calcObject={calculateObj} />
+        <Button buttonName="8" onClick={handleClick} calcObject={calculateObj} />
+        <Button buttonName="9" onClick={handleClick} calcObject={calculateObj} />
+        <Button buttonName="x" buttonClass="orange" onClick={handleClick} calcObject={calculateObj} />
+
+        <Button buttonName="4" onClick={handleClick} calcObject={calculateObj} />
+        <Button buttonName="5" onClick={handleClick} calcObject={calculateObj} />
+        <Button buttonName="6" onClick={handleClick} calcObject={calculateObj} />
+        <Button buttonName="-" buttonClass="orange" onClick={handleClick} calcObject={calculateObj} />
+
+        <Button buttonName="1" onClick={handleClick} calcObject={calculateObj} />
+        <Button buttonName="2" onClick={handleClick} calcObject={calculateObj} />
+        <Button buttonName="3" onClick={handleClick} calcObject={calculateObj} />
+        <Button buttonName="+" buttonClass="orange" onClick={handleClick} calcObject={calculateObj} />
+
+        <Button buttonName="0" buttonClass="zero" onClick={handleClick} calcObject={calculateObj} />
+        <Button buttonName="." onClick={handleClick} calcObject={calculateObj} />
+        <Button buttonName="=" buttonClass="orange" onClick={handleClick} calcObject={calculateObj} />
+      </div>
+    </div>
+  );
+};
 
 export default Calculator;
