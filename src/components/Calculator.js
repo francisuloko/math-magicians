@@ -5,6 +5,7 @@ import calculate from '../logic/calculate';
 
 const Calculator = () => {
   let output = 0;
+  const buttons = [];
   const [calculateObj, setCalculateObj] = useState({});
 
   const handleClick = (obj, buttonName) => {
