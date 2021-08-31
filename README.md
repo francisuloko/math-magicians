@@ -10,6 +10,10 @@
 - Make simple calculations.
 - Read a random math-related quote.
 
+# Live Demo
+[Netlify](https://frosty-liskov-59f1a3.netlify.app/)
+[Heroku](https://math-magicians99.herokuapp.com/)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
